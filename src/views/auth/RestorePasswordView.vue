@@ -26,7 +26,7 @@ onBeforeMount(async () => {
 
 onUnmounted(async () => {
   userStore.isRecoveryPassword = false; // Reset the status for avoid come back after change the password
-  auth.signOut();
+  await auth.signOut();
 });
 
 //TODO: Add validations for the password
