@@ -1,5 +1,34 @@
 @import './base.css';
 
+@tailwind utilities;
+@tailwind components;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  font-size: 16px;
+  min-height: 100vh;
+  min-width: 18.75rem;
+  text-rendering: optimizeLegibility;
+  /* font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif; */
+  transition: color 0.5s, background-color 0.5s;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
