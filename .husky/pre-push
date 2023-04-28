@@ -4,6 +4,8 @@
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 PROTECTED_BRANCHES="^(master|main|develop|qa|stage)"
 
+echo "\n🛠️🚀 Pre-push validations running...\n"
+
 if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
 then
   echo "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use PR.\n"

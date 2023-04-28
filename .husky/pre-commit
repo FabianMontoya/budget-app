@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "\nPre-commit validations running...\n"
+echo "\n🛠️ Pre-commit validations running...\n"
 
 npm run type-check
