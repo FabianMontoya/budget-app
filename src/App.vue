@@ -2,6 +2,7 @@
 import '@/router/guards';
 import { onBeforeUnmount, onMounted, reactive } from 'vue';
 import { RouterView } from 'vue-router';
+import OfflineView from './views/OfflineView.vue';
 
 const app = reactive({
   isOnline: true
@@ -22,5 +23,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RouterView />
+  <OfflineView v-if="!app.isOnline" />
+  <RouterView v-else />
 </template>
