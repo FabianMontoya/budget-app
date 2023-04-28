@@ -1,6 +1,5 @@
-/* import { auth } from '@/supabase';
-import { getPageTitle } from '@/utils';
-import { verifyUserState } from '@/utils/supabase'; */
+import { auth } from '@/supabase';
+import { verifyUserState } from '@/supabase/utils';
 import { getPageTitle } from '@/utils';
 import nProgress from 'nprogress';
 import router from './index';
@@ -9,11 +8,11 @@ router.beforeEach(async (to, _from, next) => {
   nProgress.start();
   nProgress.set(0.2);
 
-  // TODO: Add verify user state from supabase
-  // await verifyUserState();
-  // const { data } = await auth.getSession();
-  // const user = data.session?.user ?? undefined;
-  const user = undefined;
+  await verifyUserState();
+  const { data } = await auth.getSession();
+  const user = data.session?.user ?? undefined;
+
+  console.log({ data, user });
 
   if (!to.name) {
     next({ name: 'login' });
