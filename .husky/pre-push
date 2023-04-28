@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+PROTECTED_BRANCHES="^(master|main|develop|qa|stage)"
+
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
+then
+  echo "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use PR.\n"
+  exit 1
+fi
+
+npm run type-check
+#npm run test
+echo "Pushing to remote $BRANCH...\n"
