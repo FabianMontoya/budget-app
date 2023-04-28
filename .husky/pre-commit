@@ -4,4 +4,3 @@
 echo "\nPre-commit validations running...\n"
 
 npm run type-check
-

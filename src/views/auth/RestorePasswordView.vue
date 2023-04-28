@@ -22,7 +22,6 @@ onBeforeMount(async () => {
   if (!userStore.isRecoveryPassword || !userData) {
     router.push({ name: 'login' });
   }
-  userStore.isRecoveryPassword = false;
 });
 
 onUnmounted(async () => {
