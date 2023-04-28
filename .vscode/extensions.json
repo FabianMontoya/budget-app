@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin",
+    "firsttris.vscode-jest-runner",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "PKief.material-icon-theme",
+    "mhutchie.git-graph",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "oderwat.indent-rainbow",
+    "naumovs.color-highlight",
+    "EditorConfig.EditorConfig",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

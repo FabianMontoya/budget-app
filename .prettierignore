@@ -1,0 +1,13 @@
+.prettierignore
+.eslintignore
+node_modules
+coverage
+res
+dist
+build-scripts
+assets
+.vscode
+*.config.js
+tsconfig.json
+tsconfig.*
+*.yml
