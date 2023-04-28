@@ -1,7 +1,11 @@
 {
-  "name": "vue-project",
+  "name": "budget-app",
   "version": "0.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FabianMontoya/budget-app.git"
+  },
   "scripts": {
     "dev": "vite --mode development",
     "stage": "vite --mode stage",
