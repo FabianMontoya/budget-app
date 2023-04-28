@@ -6,10 +6,10 @@ import LoginView from '@/views/auth/LoginView.vue';
 import NotFoundView from '@/views/errors/404View.vue';
 
 const staticPrivateRoutes: RouteRecordRaw[] = [
-  /* {
+  {
     path: '/app',
     name: 'app',
-    component: MainLayout,
+    component: BasicLayout, // TODO: Create a new layout for logged users
     children: [
       {
         path: 'dashboard',
@@ -19,18 +19,9 @@ const staticPrivateRoutes: RouteRecordRaw[] = [
           pageTitle: 'pagesName.dashboard',
           requiresAuth: true
         }
-      },
-      {
-        path: 'my-profile',
-        name: 'myProfile',
-        component: () => import('../views/user/ProfileView.vue'),
-        meta: {
-          pageTitle: 'pagesName.user.myProfile',
-          requiresAuth: true
-        }
       }
     ]
-  } */
+  }
 ];
 
 export const publicRoutes: RouteRecordRaw[] = [

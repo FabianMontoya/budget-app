@@ -20,8 +20,7 @@ onBeforeMount(async () => {
   console.log({ userData });
   userInfo.value = userData;
   if (!userStore.isRecoveryPassword || !userData) {
-    console.log('...');
-    //router.push({ name: 'login' });
+    router.push({ name: 'login' });
   }
 });
 
@@ -59,6 +58,9 @@ const updatePassword = async () => {
     </form>
     <div>
       <button :disabled="isLoading" @click="updatePassword">Actualizar contraseña</button>
+    </div>
+    <div v-if="isLoading">
+      <p>Procesando solicitud, por favor espere...</p>
     </div>
   </section>
 </template>
