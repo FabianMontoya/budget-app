@@ -15,28 +15,27 @@ const awaitFunction = async () => {
 
 export const verifyUserState = async () =>
   new Promise(async (resolve) => {
-    //const appStore = useAppStore();
+    // const appStore = useAppStore();
     const userStore = useUserStore();
     if (!userStore.isLoadingUserInfo && !userStore.isLoadingUserInfo) {
       resolve(true);
       return;
     }
-    //appStore.setIsLoadingInfo(true);
+    // appStore.setIsLoadingInfo(true);
 
-    const setUserSessionData = (event: AuthChangeEvent, session: Session | null) => {
-      console.log('verifyUserState', { event, session });
+    const setUserSessionData = (_event: AuthChangeEvent, session: Session | null) => {
       if (session !== null) {
         userStore.setUserData(session.user as IUserData);
       } else {
         userStore.setUserData(null);
       }
-
-      userStore.setIsLoadingUserInfo(false);
     };
 
     auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
-      //appStore.setIsLoadingInfo(false);
+      // appStore.setIsLoadingInfo(false);
+      // console.log('verifyUserState', { event, session });
       setUserSessionData(event, session);
+      userStore.setIsLoadingUserInfo(false);
     });
 
     /* while (appStore.isLoadingInfo || userStore.isLoadingUserInfo) { */
