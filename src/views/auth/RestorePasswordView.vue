@@ -15,19 +15,20 @@ const formData = reactive({
   verifyPassword: ''
 });
 
-onBeforeMount(async () => {
-  const userData = await auth.getUser();
-  console.log({ userData });
-  userInfo.value = userData;
-  if (!userStore.isRecoveryPassword || !userData) {
-    router.push({ name: 'login' });
+const validateSessionAndClose = async () => {
+  const { data } = await auth.getSession();
+  console.log({ data });
+  if (data.session !== null) {
+    await auth.signOut();
   }
-});
+};
 
-onUnmounted(async () => {
-  userStore.isRecoveryPassword = false; // Reset the status for avoid come back after change the password
-  await auth.signOut();
-});
+const goToLogin = async () => {
+  isLoading.value = true;
+  await validateSessionAndClose();
+  router.push({ name: 'login' });
+  isLoading.value = false;
+};
 
 //TODO: Add validations for the password
 const updatePassword = async () => {
@@ -35,14 +36,27 @@ const updatePassword = async () => {
   const { error } = await auth.updateUser({ password: formData.password });
   if (!error) {
     alert('Contraseña actualizada exitosamente.');
-    await auth.signOut();
-    router.push({ name: 'login' });
+    await goToLogin();
   } else {
     alert('Lo sentimos, ocurrió un error y no se logró actualizar la contraseña.');
   }
-
   isLoading.value = false;
 };
+
+onBeforeMount(async () => {
+  isLoading.value = true;
+  const userData = await auth.getUser();
+  userInfo.value = userData;
+  if (!userStore.isRecoveryPassword || userData.error) {
+    await goToLogin();
+  }
+  isLoading.value = false;
+});
+
+onUnmounted(() => {
+  userStore.isRecoveryPassword = false; // Reset the status for avoid come back after change the password
+  validateSessionAndClose();
+});
 </script>
 <template>
   <section class="flex flex-1 flex-col justify-center gap-5">
@@ -56,8 +70,9 @@ const updatePassword = async () => {
         autocomplete="off"
       />
     </form>
-    <div>
+    <div class="flex gap-2">
       <button :disabled="isLoading" @click="updatePassword">Actualizar contraseña</button>
+      <button :disabled="isLoading" @click="goToLogin">Cancelar</button>
     </div>
     <div v-if="isLoading">
       <p>Procesando solicitud, por favor espere...</p>

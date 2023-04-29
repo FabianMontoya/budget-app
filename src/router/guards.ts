@@ -12,8 +12,6 @@ router.beforeEach(async (to, _from, next) => {
   const { data } = await auth.getSession();
   const user = data.session?.user ?? undefined;
 
-  console.log({ data, user });
-
   if (!to.name) {
     next({ name: 'login' });
     return;
