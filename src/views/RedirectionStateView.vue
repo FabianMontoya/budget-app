@@ -21,7 +21,6 @@ const getHashParams = () => {
 
 const verifyStatus = () => {
   const params = getHashParams();
-  console.log('onBeforeMount: ', { params });
 
   if (params.type === 'recovery') {
     userStore.isRecoveryPassword = true;
