@@ -2,8 +2,11 @@
 import LoginForm from '@/components/auth/LoginForm.vue';
 </script>
 <template>
-  <article>
-    <h1>Login View</h1>
-    <LoginForm />
+  <div class="absolute z-0 h-screen w-screen bg-transparent bg-[url('@/assets/landing-page.png')]" />
+  <article class="relative z-10 flex h-screen w-screen items-center justify-center">
+    <div class="rounded-md bg-white bg-opacity-90 p-10">
+      <h1 class="font-bold text-blue-400">Inicia sesión</h1>
+      <LoginForm />
+    </div>
   </article>
 </template>

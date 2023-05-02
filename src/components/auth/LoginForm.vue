@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import router from '@/router';
+import Button from '@/components/ui/button/index.vue';
+import Input from '@/components/ui/input/index.vue';
 import { auth } from '@/supabase';
 import { computed, reactive, ref } from 'vue';
 
@@ -70,16 +72,21 @@ const recoveryPassword = async () => {
   alert(`Se envió un correo electrónico a la dirección ${email} para restablecer tu contraseña de acceso.`);
 };
 </script>
+
 <template>
   <section class="mt-5 flex flex-col gap-5">
     <p>Ingrese sus datos de acceso</p>
     <form :disabled="isLoading" class="flex gap-2">
-      <input v-model="loginInfo.username" required type="email" placeholder="email" />
-      <input v-model="loginInfo.password" type="password" placeholder="password" />
+      <div class="my-3">
+        <Input v-model="loginInfo.username" type="email" placeholder="email" />
+      </div>
+      <div class="my-3">
+        <Input v-model="loginInfo.password" type="password" placeholder="password" />
+      </div>
     </form>
     <div class="flex gap-2">
-      <button :disabled="incompleteFields || isLoading" @click="validateLogin">Login</button>
-      <button :disabled="isLoading" @click="recoveryPassword">Olvidé mi contraseña</button>
+      <Button type="primary" :disabled="incompleteFields || isLoading" name="Login" @click.stop="validateLogin" />
+      <Button type="secondary" :disabled="isLoading" name="Olvidé mi contraseña" @click.stop="recoveryPassword" />
     </div>
     <div v-if="isLoading">
       <p>Procesando solicitud, por favor espere...</p>
