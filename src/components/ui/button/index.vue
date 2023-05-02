@@ -9,10 +9,10 @@ const props = defineProps({
 <template>
   <button
     class="cursor-pointer rounded-md border-transparent"
-    :disabled="disabled"
-    :class="[disabled ? '.btn-disabled' : `btn-${type}`]"
+    :disabled="props.disabled"
+    :class="[props.disabled ? '.btn-disabled' : `btn-${props.type}`]"
   >
-    <span class="m-3"> {{ name }} </span>
+    <span class="m-3"> {{ props.name }} </span>
   </button>
 </template>
 
