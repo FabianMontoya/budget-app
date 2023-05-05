@@ -40,10 +40,11 @@ const onSave = async () => {
   drawerRef.value!.close();
 };
 
-const handleClose = () => {
+const handleClose = (done: () => void) => {
   if (isLoading.value) {
     return;
   }
+  done();
 };
 
 const cancelForm = () => {
