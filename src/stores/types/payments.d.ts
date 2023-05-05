@@ -2,7 +2,13 @@ interface Payment {
   id: number;
   description: string;
   amount: number;
-  created_date: Date;
+  created_date?: Date;
 }
 
-export { Payment };
+interface PaymentForm {
+  id: number;
+  description: string;
+  amount: number;
+}
+
+export { Payment, PaymentForm };

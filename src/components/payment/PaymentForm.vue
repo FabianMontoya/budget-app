@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { usePaymentStore } from '@/stores/payment';
+import type { PaymentForm } from '@/stores/types/payments.d';
 import { Money } from '@element-plus/icons-vue';
 import { ElDrawer } from 'element-plus';
 import { computed, reactive, ref } from 'vue';
 
 const paymentStore = usePaymentStore();
 
-const props = defineProps({
-  initialValues: Object, // TODO: Create interface for this
-  modelValue: Boolean
-});
+interface IProps {
+  modelValue: boolean;
+  initialValues: PaymentForm;
+}
+
+const props = defineProps<IProps>();
 const emit = defineEmits(['update:modelValue']);
 
-const form = reactive<any>(props.initialValues); // TODO: Create interface for this
+const form = reactive<PaymentForm>(props.initialValues);
 const drawerRef = ref<InstanceType<typeof ElDrawer>>();
 const isLoading = ref(false);
 const drawerTitle = computed(() => (form.id ? 'Edit payment' : 'Add payment'));
@@ -26,7 +29,6 @@ const dialog = computed({
 });
 
 const onSave = async () => {
-  console.log(form.value);
   isLoading.value = true;
   if (form.id) {
     await paymentStore.updatePayment(form);
