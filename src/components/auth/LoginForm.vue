@@ -4,6 +4,7 @@ import Button from '@/components/ui/button/index.vue';
 import Input from '@/components/ui/input/index.vue';
 import { auth } from '@/supabase';
 import { computed, reactive, ref } from 'vue';
+import { ElMessage } from 'element-plus';
 
 const loginInfo = reactive({
   username: '',
@@ -26,23 +27,27 @@ const validateLogin = async () => {
 
     if (!error) {
       router.push({ name: 'dashboard' });
+      ElMessage({ message: 'Logueado correctamente.', type: 'success' });
       return;
     }
 
     switch (error.message) {
       case 'Invalid login credentials':
-        alert('Usuario o contraseña incorrecta.');
+        ElMessage({ message: 'Usuario o contraseña incorrecta.', type: 'error' });
         break;
       case 'auth/user-disabled':
-        alert('Usuario deshabilitado..');
+        ElMessage({ message: 'Usuario deshabilitado..', type: 'error' });
         break;
       default:
         console.error('Auth error: ', { error });
-        alert('Ocurrió un error y no se pudo hacer login.');
+        ElMessage({
+          message: 'Ocurrió un error y no se pudo hacer login.',
+          type: 'error'
+        });
     }
   } catch (error) {
     console.error(error);
-    alert('Ocurrió un error y no se pudo hacer login.');
+    ElMessage({ message: 'Ocurrió un error y no se pudo hacer login.', type: 'error' });
   } finally {
     loginInfo.password = '';
     isLoading.value = false;
@@ -66,10 +71,16 @@ const recoveryPassword = async () => {
   isLoading.value = false;
 
   if (error) {
-    alert('Lo sentimos, ocurrió un error y no se logró enviar el correo para restablecer la contraseña.');
+    ElMessage({
+      message: 'Lo sentimos, ocurrió un error y no se logró enviar el correo para restablecer la contraseña.',
+      type: 'error'
+    });
     return;
   }
-  alert(`Se envió un correo electrónico a la dirección ${email} para restablecer tu contraseña de acceso.`);
+  ElMessage({
+    message: `Se envió un correo electrónico a la dirección ${email} para restablecer tu contraseña de acceso.`,
+    type: 'success'
+  });
 };
 </script>
 
