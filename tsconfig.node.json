@@ -1,7 +1,7 @@
 {
-  "extends": ["@tsconfig/node18/tsconfig.json", "@vue/tsconfig/tsconfig.json"],
+  /* "extends": ["@tsconfig/node18/tsconfig.json", "@vue/tsconfig/tsconfig.json"], */
+  "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
-  "exclude": ["node_modules/element-plus"],
   "compilerOptions": {
     "composite": true,
     "types": ["node"]

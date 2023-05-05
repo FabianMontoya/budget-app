@@ -1,13 +1,15 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  /* "extends": "@vue/tsconfig/tsconfig.dom.json", */
+  "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "node_modules/@types"],
-  "exclude": ["src/**/__tests__/*", "node_modules/element-plus"],
+  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
+    "types": ["element-plus/global"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -16,8 +18,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "types": ["element-plus/global"]
+    "noFallthroughCasesInSwitch": true
   },
 
   "references": [
