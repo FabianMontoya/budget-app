@@ -37,7 +37,8 @@ import {
   faUserSecret,
   faUsers,
   faWrench,
-  faXmark
+  faXmark,
+  faSkullCrossbones
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -75,7 +76,8 @@ library.add(
   faUsers,
   faCalendarDay,
   faCalendarDays,
-  faMoneyCheckDollar
+  faMoneyCheckDollar,
+  faSkullCrossbones
 );
 
 export default {};
