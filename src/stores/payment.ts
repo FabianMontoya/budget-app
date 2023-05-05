@@ -1,39 +1,40 @@
+import { deletePayment, getPayments, savePayment, updatePayment } from '@/services/payment.service';
 import { defineStore } from 'pinia';
-import { savePayment, getPayments, deletePayment, updatePayment } from '@/services/payment.service.ts';
+import type { Payment } from './types/payments';
 
 export const usePaymentStore = defineStore('payment', {
-  state: () => ({ isLoading: false, payments: [] }),
+  state: () => ({ isLoading: false, payments: [] as Payment[] }),
   actions: {
-    setIsLoading(isLoading) {
+    setIsLoading(isLoading: boolean) {
       this.isLoading = isLoading;
     },
-    setPayments(data) {
+    setPayments(data: Payment[]) {
       this.payments = data;
     },
-    async savePayment(payload) {
+    async savePayment(payload: Payment) {
       try {
         this.setIsLoading(true);
-        const response = await savePayment(payload);
+        await savePayment(payload);
       } catch (error) {
         console.log('error: ', error);
       } finally {
         this.setIsLoading(false);
       }
     },
-    async deletePayment(id) {
+    async deletePayment(id: number) {
       try {
         this.setIsLoading(true);
-        const response = await deletePayment(id);
+        await deletePayment(id);
       } catch (error) {
         console.log('error: ', error);
       } finally {
         this.setIsLoading(false);
       }
     },
-    async updatePayment(payload) {
+    async updatePayment(payload: Payment) {
       try {
         this.setIsLoading(true);
-        const response = await updatePayment(payload);
+        await updatePayment(payload);
       } catch (error) {
         console.log('error: ', error);
       } finally {

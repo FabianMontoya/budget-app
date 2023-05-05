@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import { ref } from 'vue';
-import { ElMenu } from 'element-plus';
 import router from '@/router';
-import { auth } from '@/supabase';
 import { useUserStore } from '@/stores/user';
+import { auth } from '@/supabase';
+import { ElMenu } from 'element-plus';
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
 
 const userStore = useUserStore();
 
 const activeIndex = ref('dashboard');
-const handleSelect = (key: string, keyPath: string[]) => {
+const handleSelect = (key: string) => {
   if (key === 'dashboard') {
     router.push('/app/dashboard');
   }

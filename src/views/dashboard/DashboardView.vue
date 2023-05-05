@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { usePaymentStore } from '@/stores/payment.ts';
-import { ElTable, ElLoading } from 'element-plus';
 import PaymentForm from '@/components/payment/PaymentForm.vue';
+import { usePaymentStore } from '@/stores/payment';
+import type { Payment } from '@/stores/types/payments';
+import { ElLoading, ElTable } from 'element-plus';
+import { computed, onMounted, ref } from 'vue';
 
 const paymentStore = usePaymentStore();
 
@@ -17,18 +18,18 @@ const filterTableData = computed(() =>
 );
 
 const emptyValues = {
-  id: '',
+  id: 0,
   description: '',
   amount: 0
 };
 let initialValues = { ...emptyValues };
 
-const handleEdit = (index: number, row: User) => {
+const handleEdit = (_index: number, row: Payment) => {
   initialValues = { ...row };
   dialog.value = true;
 };
 
-const handleDelete = async (index: number, row: { description: string; value: string }) => {
+const handleDelete = async (_index: number, row: Payment) => {
   const loader = ElLoading.service({ lock: true });
   await paymentStore.deletePayment(row.id);
   await paymentStore.loadPayments();
