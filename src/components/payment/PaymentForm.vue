@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue';
-import { ElDrawer, ElMessageBox } from 'element-plus';
+import { usePaymentStore } from '@/stores/payment';
 import { Money } from '@element-plus/icons-vue';
-import { usePaymentStore } from '@/stores/payment.ts';
+import { ElDrawer } from 'element-plus';
+import { computed, reactive, ref } from 'vue';
 
 const paymentStore = usePaymentStore();
 
@@ -12,7 +12,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['update:modelValue']);
 
-const form = reactive(props.initialValues);
+const form = reactive<any>(props.initialValues); // TODO: Create interface for this
 const drawerRef = ref<InstanceType<typeof ElDrawer>>();
 const isLoading = ref(false);
 const drawerTitle = computed(() => (form.id ? 'Edit payment' : 'Add payment'));
@@ -38,7 +38,7 @@ const onSave = async () => {
   drawerRef.value!.close();
 };
 
-const handleClose = (done) => {
+const handleClose = () => {
   if (isLoading.value) {
     return;
   }

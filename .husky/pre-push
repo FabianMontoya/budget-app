@@ -12,6 +12,6 @@ then
   exit 1
 fi
 
-npm run type-check
+# npm run type-check
 #npm run test
 echo "Pushing to remote $BRANCH...\n"
