@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write \"./**/*.{js,ts,json,vue}\""
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
