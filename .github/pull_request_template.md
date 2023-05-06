@@ -1,7 +1,5 @@
 ### - What does this PR do?:
 
-<!--- Describe your changes in detail -->
-
 Write description here.
 
 ### - Clickup url ticket:
