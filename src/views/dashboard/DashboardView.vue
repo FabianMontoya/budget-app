@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PaymentForm from '@/components/payment/PaymentForm.vue';
 import { usePaymentStore } from '@/stores/payment';
-import type { Payment } from '@/stores/types/payments';
+import type { IPaymentData } from '@/stores/types/payments';
 import { ElLoading, ElTable } from 'element-plus';
 import { computed, onMounted, ref } from 'vue';
 
@@ -24,12 +24,12 @@ const emptyValues = {
 };
 let initialValues = { ...emptyValues };
 
-const handleEdit = (_index: number, row: Payment) => {
+const handleEdit = (_index: number, row: IPaymentData) => {
   initialValues = { ...row };
   dialog.value = true;
 };
 
-const handleDelete = async (_index: number, row: Payment) => {
+const handleDelete = async (_index: number, row: IPaymentData) => {
   const loader = ElLoading.service({ lock: true });
   await paymentStore.deletePayment(row.id);
   await paymentStore.loadPayments();
@@ -77,5 +77,5 @@ onMounted(async () => {
       <el-button type="primary" @click="dialog = true">Agregar pago</el-button>
     </div>
   </article>
-  <PaymentForm v-model="dialog" :key="initialValues.id" :initialValues="initialValues" />
+  <PaymentForm v-model="dialog" :initialValues="initialValues" />
 </template>

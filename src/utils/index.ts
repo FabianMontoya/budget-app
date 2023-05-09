@@ -2,6 +2,7 @@ import { APP_NAME } from '@/constants';
 import { useUserStore } from '@/stores/user';
 import type { messageTypes } from '@/types/app';
 import { ElMessage, ElNotification } from 'element-plus';
+import type { VNode } from 'vue';
 
 export const getEnv = (): ImportMetaEnv => import.meta && import.meta.env;
 
@@ -123,7 +124,7 @@ export const numberToCurrency = (value: number) => {
   return '$ ' + value.toFixed(decimals).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,');
 };
 
-export const showMessage = (message: string, type: messageTypes, duration: number = 5000) => {
+export const showMessage = (message: string | VNode, type: messageTypes, duration: number = 5000) => {
   ElMessage({
     message: message,
     type: type,
@@ -133,7 +134,7 @@ export const showMessage = (message: string, type: messageTypes, duration: numbe
 };
 
 export const showNotification = (
-  message: string,
+  message: string | VNode,
   title: string | undefined,
   type: messageTypes,
   duration: number = 5000
