@@ -16,7 +16,7 @@ body {
   min-height: 100vh;
   min-width: 18.75rem;
   text-rendering: optimizeLegibility;
-  /* font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif; */
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   transition: color 0.5s, background-color 0.5s;
 }
 

@@ -3,6 +3,7 @@ import { onBeforeMount, onUnmounted, reactive, ref } from 'vue';
 
 import { useUserStore } from '@/stores/user';
 import { auth } from '@/supabase';
+import { showMessage } from '@/utils';
 import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
@@ -32,13 +33,25 @@ const goToLogin = async () => {
 
 //TODO: Add validations for the password
 const updatePassword = async () => {
+  if (formData.password !== formData.verifyPassword) {
+    showMessage('Las contraseñas no coinciden, favor validar.', 'error');
+    return;
+  }
+
+  const regex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+={}[\]\\|;:'",.<>/?-])[A-Za-z\d!@#$%^&*()_+={}[\]\\|;:'",.<>/?-]{12,}$/;
+  if (!regex.test(formData.password)) {
+    showMessage('La contraseña no cumple los requisitos mínimos de seguridad, favor validar.', 'error');
+    return;
+  }
+
   isLoading.value = true;
   const { error } = await auth.updateUser({ password: formData.password });
   if (!error) {
-    alert('Contraseña actualizada exitosamente.');
+    showMessage('Contraseña actualizada exitosamente.', 'success');
     await goToLogin();
   } else {
-    alert('Lo sentimos, ocurrió un error y no se logró actualizar la contraseña.');
+    showMessage('Lo sentimos, ocurrió un error y no se logró actualizar la contraseña.', 'error');
   }
   isLoading.value = false;
 };
@@ -59,7 +72,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <section class="flex flex-1 flex-col justify-center gap-5">
+  <section class="flex flex-1 flex-col justify-center gap-5" v-loading="isLoading">
     <p>Ingresa la nueva contraseña para tu cuenta</p>
     <form :disabled="isLoading" class="flex gap-4">
       <input v-model="formData.password" type="password" placeholder="Nueva contraseña" autocomplete="off" />
@@ -70,12 +83,19 @@ onUnmounted(() => {
         autocomplete="off"
       />
     </form>
+    <div>
+      <p>La contraseña debe cumplir mínimo estas recomendaciones de seguridad:</p>
+      <ul>
+        <li>Longitud mínima de 12 caracteres.</li>
+        <li>1 letra minúscula.</li>
+        <li>1 letra mayúscula.</li>
+        <li>1 número.</li>
+        <li>1 símbolo.</li>
+      </ul>
+    </div>
     <div class="flex gap-2">
       <button :disabled="isLoading" @click="updatePassword">Actualizar contraseña</button>
       <button :disabled="isLoading" @click="goToLogin">Cancelar</button>
-    </div>
-    <div v-if="isLoading">
-      <p>Procesando solicitud, por favor espere...</p>
     </div>
   </section>
 </template>
