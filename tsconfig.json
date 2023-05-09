@@ -4,8 +4,9 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "node_modules/@types"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
     "composite": true,
-    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -13,13 +14,16 @@
     "types": ["element-plus/global"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "skipLibCheck": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true
   },
 
   "references": [
