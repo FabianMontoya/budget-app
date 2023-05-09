@@ -83,7 +83,7 @@ onUnmounted(() => {
         autocomplete="off"
       />
     </form>
-    <div>
+    <div class="text-sm">
       <p>La contraseña debe cumplir mínimo estas recomendaciones de seguridad:</p>
       <ul>
         <li>Longitud mínima de 12 caracteres.</li>
