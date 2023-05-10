@@ -1,5 +1,10 @@
 import type { Dayjs } from 'dayjs';
 
+export interface IPaymentStore {
+  isLoading: boolean;
+  payments: IPaymentData[];
+}
+
 export interface IPaymentForm {
   id: number;
   description: string;

@@ -5,13 +5,16 @@ import dayjs from 'dayjs';
 import type { IPaymentData } from '@/stores/types/payments';
 import type { IPaymentResponseData, ISavePaymentPayload, IUpdatePaymentPayload } from './types/payment';
 
-const savePayment = async ({ description, amount }: ISavePaymentPayload) => {
+const savePayment = async ({ description, amount, url, reference, isFixed }: ISavePaymentPayload) => {
   try {
     const movementDate = dayjs().toISOString();
     const { data } = await supabase.from('payments').insert([
       {
-        description: description,
-        amount: amount,
+        description,
+        amount,
+        url,
+        reference,
+        isFixed,
         user_created: getUserId(),
         created_at: movementDate,
         updated_at: movementDate
@@ -65,11 +68,11 @@ const deletePayment = async (id: number) => {
   }
 };
 
-const updatePayment = async ({ description, amount, id }: IUpdatePaymentPayload) => {
+const updatePayment = async ({ id, description, amount, url, reference, isFixed }: IUpdatePaymentPayload) => {
   try {
     const { data } = await supabase
       .from('payments')
-      .update({ description: description, amount: amount, updated_at: dayjs().toISOString() })
+      .update({ description, amount, url, reference, isFixed, updated_at: dayjs().toISOString() })
       .eq('id', id);
     return data;
   } catch (error) {
