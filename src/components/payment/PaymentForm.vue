@@ -2,6 +2,7 @@
 import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
 import { usePaymentStore } from '@/stores/payment';
 import type { IPaymentForm } from '@/stores/types/payments';
+import { showMessage } from '@/utils';
 import { Check as CheckIcon, Close as CloseIcon, Link as LinkIcon } from '@element-plus/icons-vue';
 import { ElDrawer, type FormInstance } from 'element-plus';
 import { computed, reactive, ref, watch } from 'vue';
@@ -49,12 +50,18 @@ watch(
 // TODO: create the validation rules for the form: https://element-plus.org/en-US/component/form.html#validation
 const onSave = async () => {
   isLoading.value = true;
-  if (form.id) {
+  const isUpdate: boolean = Boolean(form.id && form.id > 0);
+  let successMessage = 'Payment created successful!';
+  if (isUpdate) {
+    successMessage = 'Payment updated successful!';
     await paymentStore.updatePayment(form);
   } else {
     await paymentStore.savePayment(form);
   }
   await paymentStore.loadPayments();
+
+  showMessage(successMessage, 'success');
+
   isLoading.value = false;
   drawerRef.value!.close();
 };
