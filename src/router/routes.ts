@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 import BasicLayout from '@/layout/BasicLayout.vue';
+import MainLayout from '@/layout/MainLayout.vue';
 
 import LoginView from '@/views/auth/LoginView.vue';
 import NotFoundView from '@/views/errors/404View.vue';
@@ -9,7 +10,7 @@ const staticPrivateRoutes: RouteRecordRaw[] = [
   {
     path: '/app',
     name: 'app',
-    component: BasicLayout, // TODO: Create a new layout for logged users
+    component: MainLayout,
     children: [
       {
         path: 'dashboard',
