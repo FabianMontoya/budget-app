@@ -1,17 +1,21 @@
 import { deletePayment, getPayments, savePayment, updatePayment } from '@/services/payment.service';
+import type { ISavePaymentPayload, IUpdatePaymentPayload } from '@/services/types/payment';
 import { defineStore } from 'pinia';
-import type { Payment } from './types/payments';
+import type { IPaymentData, IPaymentStore } from './types/payments';
 
 export const usePaymentStore = defineStore('payment', {
-  state: () => ({ isLoading: false, payments: [] as Payment[] }),
+  state: (): IPaymentStore => ({
+    isLoading: false,
+    payments: []
+  }),
   actions: {
     setIsLoading(isLoading: boolean) {
       this.isLoading = isLoading;
     },
-    setPayments(data: Payment[]) {
+    setPayments(data: IPaymentData[]) {
       this.payments = data;
     },
-    async savePayment(payload: Payment) {
+    async savePayment(payload: ISavePaymentPayload) {
       try {
         this.setIsLoading(true);
         await savePayment(payload);
@@ -31,7 +35,7 @@ export const usePaymentStore = defineStore('payment', {
         this.setIsLoading(false);
       }
     },
-    async updatePayment(payload: Payment) {
+    async updatePayment(payload: IUpdatePaymentPayload) {
       try {
         this.setIsLoading(true);
         await updatePayment(payload);
