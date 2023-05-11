@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 import { useMq } from 'vue3-mq';
 
-export function useMQ() {
+export function useVueMQ() {
   const mq = useMq();
   const current = computed(() => mq.current);
   const isPhone = computed(() => mq.current === 'phone');
