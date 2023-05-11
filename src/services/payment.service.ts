@@ -44,7 +44,7 @@ const getPayments = async (): Promise<IPaymentData[]> => {
       .from('payments')
       .select('id, description, amount, url, isFixed, reference, user_created, created_at, updated_at');
 
-    if (data === null) {
+    if (!data) {
       return [];
     }
 
