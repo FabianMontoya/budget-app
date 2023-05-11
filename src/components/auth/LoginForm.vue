@@ -16,12 +16,10 @@ const validateLogin = async () => {
   try {
     isLoading.value = true;
 
-    const { data, error } = await auth.signInWithPassword({
+    const { error } = await auth.signInWithPassword({
       email: loginInfo.username,
       password: loginInfo.password
     });
-
-    console.log({ data, error }); // TODO: Delete this
 
     if (!error) {
       router.push({ name: 'dashboard' });
@@ -62,11 +60,10 @@ const recoveryPassword = async () => {
 
   isLoading.value = true;
 
-  const { data, error } = await auth.resetPasswordForEmail(email, {
+  const { error } = await auth.resetPasswordForEmail(email, {
     redirectTo: window.location.origin + '/redirection-state'
   });
 
-  console.log({ data, error }); // TODO: Delete this
   isLoading.value = false;
 
   if (error) {
