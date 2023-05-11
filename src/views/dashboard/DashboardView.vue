@@ -75,7 +75,7 @@ onMounted(async () => {
       <el-table-column prop="amount" label="Amount" width="180" />
       <el-table-column prop="created_at" label="Date">
         <template #default="scope">
-          <span>{{ scope.row.created_at.format('YYYY-MM-DD hh:mm:ss a') }}</span>
+          <span>{{ scope.row.created_at.format('YYYY-MM-DD hh:mm a') }}</span>
         </template>
       </el-table-column>
     </el-table>
