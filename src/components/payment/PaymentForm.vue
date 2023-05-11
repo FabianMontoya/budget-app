@@ -106,7 +106,7 @@ const cancelForm = () => {
             <el-tooltip content="Link for online payment" placement="top">
               <el-icon class="cursor-help text-gray-400"><InfoFilled /></el-icon>
             </el-tooltip>
-            <el-input v-model="form.url" :prefix-icon="LinkIcon" maxlength="500" />
+            <el-input type="url" v-model="form.url" :prefix-icon="LinkIcon" maxlength="500" />
           </div>
         </el-form-item>
         <el-form-item label="Reference:">
