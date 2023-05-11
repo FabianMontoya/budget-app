@@ -1,0 +1,25 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancelar",
+  "close": "Cerrar",
+  "yes": "Si",
+  "no": "No",
+  "inputPlaceHolder": "Ingrese un valor",
+  "selectPlaceHolder": "Seleccione una opción",
+  "datePlaceHolder": "Seleccione fecha",
+  "save": "Guardar",
+  "update": "Actualizar",
+  "create": "Crear",
+  "edit": "Editar",
+  "delete": "Eliminar",
+  "undoneAction": "Recuerda, esta acción no se puede deshacer.",
+  "questionDelete": "¿Está seguro de eliminar el registro seleccionado?",
+  "deleteRow": "Eliminar registro",
+  "deleteRowSuccessful": "Registro eliminado exitosamente.",
+  "deleteRowError": "Lo sentimos, ocurrió un error al intentar eliminar el registro.",
+  "editRowSuccessful": "Registro actualizado exitosamente.",
+  "editRowError": "Lo sentimos, ocurrió un error al intentar actualizar el registro.",
+  "formError": {
+    "onlyInputNumbers": "Por favor ingrese solo números."
+  }
+}

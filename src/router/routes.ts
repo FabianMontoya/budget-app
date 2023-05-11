@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 import BasicLayout from '@/layout/BasicLayout.vue';
+import MainLayout from '@/layout/MainLayout.vue';
 
 import LoginView from '@/views/auth/LoginView.vue';
 import NotFoundView from '@/views/errors/404View.vue';
@@ -9,14 +10,14 @@ const staticPrivateRoutes: RouteRecordRaw[] = [
   {
     path: '/app',
     name: 'app',
-    component: BasicLayout, // TODO: Create a new layout for logged users
+    component: MainLayout,
     children: [
       {
         path: 'dashboard',
         name: 'dashboard',
         component: () => import('../views/dashboard/DashboardView.vue'),
         meta: {
-          pageTitle: 'pagesName.dashboard',
+          pageTitle: 'pages.dashboard',
           requiresAuth: true
         }
       }
@@ -34,7 +35,7 @@ export const publicRoutes: RouteRecordRaw[] = [
         name: '404',
         component: NotFoundView,
         meta: {
-          pageTitle: 'pagesName.404'
+          pageTitle: 'pages.404'
         }
       },
       {
@@ -50,7 +51,7 @@ export const publicRoutes: RouteRecordRaw[] = [
         name: '500',
         component: () => import('../views/errors/500View.vue'),
         meta: {
-          pageTitle: 'pagesName.500'
+          pageTitle: 'pages.500'
         }
       },
       {
@@ -72,7 +73,7 @@ export const publicRoutes: RouteRecordRaw[] = [
         name: 'login',
         component: LoginView,
         meta: {
-          pageTitle: 'pagesName.auth.login'
+          pageTitle: 'pages.auth.login'
         }
       },
       {
@@ -80,7 +81,7 @@ export const publicRoutes: RouteRecordRaw[] = [
         name: 'restorePassword',
         component: () => import('../views/auth/RestorePasswordView.vue'),
         meta: {
-          pageTitle: 'pagesName.auth.restorePassword'
+          pageTitle: 'pages.auth.restorePassword'
         }
       }
     ]

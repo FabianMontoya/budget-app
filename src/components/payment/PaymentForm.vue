@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
-import { usePaymentStore } from '@/stores/payment';
-import type { IPaymentForm } from '@/stores/types/payments';
-import { showMessage } from '@/utils';
 import { Check as CheckIcon, Close as CloseIcon, Link as LinkIcon } from '@element-plus/icons-vue';
 import { ElDrawer, type FormInstance } from 'element-plus';
 import { computed, reactive, ref, watch } from 'vue';
+
+import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
+import { useMQ } from '@/composable/useMQ';
+import { usePaymentStore } from '@/stores/payment';
+import type { IPaymentForm } from '@/stores/types/payments';
+import { showMessage } from '@/utils';
 
 const paymentStore = usePaymentStore();
 
@@ -16,6 +18,7 @@ interface IProps {
 
 const props = defineProps<IProps>();
 const emit = defineEmits(['update:modelValue']);
+const { isPhone } = useMQ();
 
 const form = reactive<IPaymentForm>(props.initialValues);
 const drawerRef = ref<InstanceType<typeof ElDrawer>>();
@@ -85,6 +88,7 @@ const cancelForm = () => {
   <el-drawer
     ref="drawerRef"
     v-model="dialog"
+    :size="isPhone ? '85%' : '40%'"
     :title="drawerTitle"
     :before-close="handleClose"
     direction="ltr"

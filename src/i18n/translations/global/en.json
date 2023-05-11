@@ -1,0 +1,25 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "close": "Close",
+  "yes": "Yes",
+  "no": "No",
+  "inputPlaceHolder": "Enter a value",
+  "selectPlaceHolder": "Select an option",
+  "datePlaceHolder": "Select date",
+  "save": "Save",
+  "update": "Update",
+  "create": "Create",
+  "edit": "Edit",
+  "delete": "Delete",
+  "undoneAction": "Remember, this action can't be undone.",
+  "questionDelete": "Are you sure you want to delete the selected row?",
+  "deleteRow": "Delete row",
+  "deleteRowSuccessful": "Row successfully deleted.",
+  "deleteRowError": "Sorry, an error occurred while trying to delete the row.",
+  "editRowSuccessful": "Row successfully updated.",
+  "editRowError": "Sorry, an error occurred while trying to update the row.",
+  "formError": {
+    "onlyInputNumbers": "Please enter numbers only."
+  }
+}
