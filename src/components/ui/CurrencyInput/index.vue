@@ -31,6 +31,7 @@ const parserAmount = (value: string) => {
 <template>
   <el-input
     v-model="amount"
+    type="tel"
     autocomplete="off"
     maxlength="20"
     @keydown="allowOnlyDecimal($event as KeyboardEvent)"

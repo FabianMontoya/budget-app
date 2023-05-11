@@ -72,17 +72,25 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <section class="flex flex-1 flex-col justify-center gap-5" v-loading="isLoading">
+  <section class="m-5 flex flex-1 flex-col justify-center gap-5" v-loading="isLoading">
     <p>Ingresa la nueva contraseña para tu cuenta</p>
-    <form :disabled="isLoading" class="flex gap-4">
-      <input v-model="formData.password" type="password" placeholder="Nueva contraseña" autocomplete="off" />
-      <input
+    <el-form :disabled="isLoading" class="flex max-w-md flex-col gap-2">
+      <el-input
+        v-model="formData.password"
+        type="password"
+        show-password
+        placeholder="Nueva contraseña"
+        autocomplete="off"
+        maxlength="50"
+      />
+      <el-input
         v-model="formData.verifyPassword"
         type="password"
+        show-password
         placeholder="Verifica tu contraseña"
         autocomplete="off"
       />
-    </form>
+    </el-form>
     <div class="text-sm">
       <p>La contraseña debe cumplir mínimo estas recomendaciones de seguridad:</p>
       <ul>
@@ -93,9 +101,9 @@ onUnmounted(() => {
         <li>1 símbolo.</li>
       </ul>
     </div>
-    <div class="flex gap-2">
-      <button :disabled="isLoading" @click="updatePassword">Actualizar contraseña</button>
-      <button :disabled="isLoading" @click="goToLogin">Cancelar</button>
+    <div>
+      <el-button type="primary" :loading="isLoading" @click="updatePassword">Actualizar contraseña</el-button>
+      <el-button plain :disabled="isLoading" @click="goToLogin">Cancelar</el-button>
     </div>
   </section>
 </template>
