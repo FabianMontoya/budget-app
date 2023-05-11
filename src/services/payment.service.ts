@@ -48,12 +48,7 @@ const getPayments = async (): Promise<IPaymentData[]> => {
       return [];
     }
 
-    const payments: IPaymentData[] = [];
-    data.forEach((payment: IPaymentResponseData) => {
-      payments.push(parsePaymentResponseToPaymentData(payment));
-    });
-
-    return payments;
+    return data.map((payment: IPaymentResponseData) => parsePaymentResponseToPaymentData(payment));
   } catch (error) {
     throw error;
   }
