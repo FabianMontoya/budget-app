@@ -1,4 +1,5 @@
 import { APP_NAME } from '@/constants';
+import i18n from '@/i18n';
 import { useUserStore } from '@/stores/user';
 import type { messageTypes } from '@/types/app';
 import { ElMessage, ElNotification } from 'element-plus';
@@ -88,7 +89,7 @@ export const getPageTitle = (pageName: string) => {
   if (!pageName) {
     return APP_NAME;
   }
-  return `${pageName} - ${APP_NAME}`;
+  return `${i18n.global.t(pageName)} - ${APP_NAME}`;
 };
 
 export function getBrowserLocales(options = {}) {
