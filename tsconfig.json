@@ -1,12 +1,13 @@
 {
   /* "extends": "@vue/tsconfig/tsconfig.dom.json", */
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "node_modules/@types"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue","src/**/*.json", "node_modules/@types"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
     "composite": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

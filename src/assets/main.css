@@ -13,8 +13,8 @@
 
 body {
   font-size: 16px;
-  min-height: 100vh;
-  min-width: 18.75rem;
+  min-height: 100vh !important;
+  min-width: 18.75rem !important;
   text-rendering: optimizeLegibility;
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   transition: color 0.5s, background-color 0.5s;
@@ -25,4 +25,70 @@ img {
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+}
+
+
+
+/* re-write element+ styles */
+
+.el-notification {
+  --el-notification-padding: 14px 13px 14px 13px !important;
+}
+
+.is-loading {
+  @apply !cursor-wait
+}
+
+.el-loading-mask {
+  @apply !cursor-wait
+}
+
+.color--success {
+  color: rgb(var(--el-color-success-rgb));
+  
+}
+
+.color--warning {
+  color: rgb(var(--el-color-warning-rgb));
+  
+}
+
+.color--danger {
+  color: rgb(var(--el-color-danger-rgb));
+  
+}
+
+.color--info {
+  color: var(--el-color-primary-light-3);
+  
+}
+
+.color--muted {
+  color: var(--el-color-info)
+}
+
+.cell {
+  word-break: break-word !important;
+}
+
+.el-dialog__body {
+  word-break: normal;
+}
+
+.el-notification__content {
+  line-height: 1.25rem;
+  text-align: start;
+}
+
+/* isn't Phone */
+@media (min-width: 768px) {
+  .el-message {
+    @apply max-w-md
+  }
+}
+/* is Phone */
+@media (max-width: 768px) {
+  .el-message {
+    @apply !w-full
+  }
 }
