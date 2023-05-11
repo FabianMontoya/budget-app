@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import router from '@/router';
 import Button from '@/components/ui/button/index.vue';
 import Input from '@/components/ui/input/index.vue';
+import router from '@/router';
 import { auth } from '@/supabase';
+import { showMessage, validateEmail } from '@/utils';
 import { computed, reactive, ref } from 'vue';
-import { ElMessage } from 'element-plus';
 
 const loginInfo = reactive({
   username: '',
@@ -27,27 +27,23 @@ const validateLogin = async () => {
 
     if (!error) {
       router.push({ name: 'dashboard' });
-      ElMessage({ message: 'Logueado correctamente.', type: 'success' });
       return;
     }
 
     switch (error.message) {
       case 'Invalid login credentials':
-        ElMessage({ message: 'Usuario o contraseña incorrecta.', type: 'error' });
+        showMessage('Usuario o contraseña incorrecta. Favor verifique los datos.', 'error');
         break;
-      case 'auth/user-disabled':
-        ElMessage({ message: 'Usuario deshabilitado..', type: 'error' });
+      case 'auth/user-disabled': // TODO: Check how disable an user into supabase
+        showMessage('Usuario deshabilitado.', 'warning');
         break;
       default:
         console.error('Auth error: ', { error });
-        ElMessage({
-          message: 'Ocurrió un error y no se pudo hacer login.',
-          type: 'error'
-        });
+        showMessage('Ocurrió un error y no se pudo hacer login.', 'error');
     }
   } catch (error) {
     console.error(error);
-    ElMessage({ message: 'Ocurrió un error y no se pudo hacer login.', type: 'error' });
+    showMessage('Ocurrió un error y no se pudo hacer login.', 'error');
   } finally {
     loginInfo.password = '';
     isLoading.value = false;
@@ -61,6 +57,11 @@ const recoveryPassword = async () => {
     return;
   }
 
+  if (!validateEmail(email)) {
+    showMessage('Por favor ingrese una dirección de correo electrónico valida.', 'error');
+    return;
+  }
+
   isLoading.value = true;
 
   const { data, error } = await auth.resetPasswordForEmail(email, {
@@ -71,21 +72,22 @@ const recoveryPassword = async () => {
   isLoading.value = false;
 
   if (error) {
-    ElMessage({
-      message: 'Lo sentimos, ocurrió un error y no se logró enviar el correo para restablecer la contraseña.',
-      type: 'error'
-    });
+    showMessage(
+      'Lo sentimos, ocurrió un error y no se logró enviar el correo para restablecer la contraseña.',
+      'error'
+    );
+
     return;
   }
-  ElMessage({
-    message: `Se envió un correo electrónico a la dirección ${email} para restablecer tu contraseña de acceso.`,
-    type: 'success'
-  });
+  showMessage(
+    `Se envió un correo electrónico a la dirección ${email} para restablecer tu contraseña de acceso.`,
+    'success'
+  );
 };
 </script>
 
 <template>
-  <section class="mt-5 flex flex-col gap-5">
+  <section class="mt-5 flex flex-col gap-5" v-loading="isLoading">
     <p>Ingrese sus datos de acceso</p>
     <form :disabled="isLoading" class="flex gap-2">
       <div class="my-3">
@@ -98,9 +100,6 @@ const recoveryPassword = async () => {
     <div class="flex gap-2">
       <Button type="primary" :disabled="incompleteFields || isLoading" name="Login" @click.stop="validateLogin" />
       <Button type="secondary" :disabled="isLoading" name="Olvidé mi contraseña" @click.stop="recoveryPassword" />
-    </div>
-    <div v-if="isLoading">
-      <p>Procesando solicitud, por favor espere...</p>
     </div>
   </section>
 </template>

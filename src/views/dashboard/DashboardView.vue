@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PaymentForm from '@/components/payment/PaymentForm.vue';
 import { usePaymentStore } from '@/stores/payment';
-import type { Payment } from '@/stores/types/payments';
+import type { IPaymentData, IPaymentForm } from '@/stores/types/payments';
 import { ElLoading, ElTable } from 'element-plus';
 import { computed, onMounted, ref } from 'vue';
 
@@ -17,19 +17,22 @@ const filterTableData = computed(() =>
   )
 );
 
-const emptyValues = {
+const emptyValues: IPaymentForm = {
   id: 0,
   description: '',
-  amount: 0
+  amount: 0,
+  isFixed: false,
+  url: '',
+  reference: ''
 };
 let initialValues = { ...emptyValues };
 
-const handleEdit = (_index: number, row: Payment) => {
+const handleEdit = (_index: number, row: IPaymentData) => {
   initialValues = { ...row };
   dialog.value = true;
 };
 
-const handleDelete = async (_index: number, row: Payment) => {
+const handleDelete = async (_index: number, row: IPaymentData) => {
   const loader = ElLoading.service({ lock: true });
   await paymentStore.deletePayment(row.id);
   await paymentStore.loadPayments();
@@ -70,12 +73,16 @@ onMounted(async () => {
     <el-table :data="paymentStore.payments" border style="width: 1000px">
       <el-table-column prop="description" label="Description" width="180" />
       <el-table-column prop="amount" label="Amount" width="180" />
-      <el-table-column prop="created_at" label="Date" />
+      <el-table-column prop="created_at" label="Date">
+        <template #default="scope">
+          <span>{{ scope.row.created_at.format('ddd DD MMM, YYYY hh:mm a') }}</span>
+        </template>
+      </el-table-column>
     </el-table>
     <div id="actions" class="py-4">
       <el-button type="primary" @click="handleOpen">Agregar pago fijo</el-button>
       <el-button type="primary" @click="dialog = true">Agregar pago</el-button>
     </div>
   </article>
-  <PaymentForm v-model="dialog" :key="initialValues.id" :initialValues="initialValues" />
+  <PaymentForm v-model="dialog" :initialValues="initialValues" />
 </template>
