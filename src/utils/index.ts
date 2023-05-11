@@ -150,5 +150,5 @@ export const showNotification = (
 
 export const getUserId = (): string => {
   const userStore = useUserStore();
-  return (userStore.userData?.id as string) ?? '';
+  return userStore.userData?.id ?? '';
 };
