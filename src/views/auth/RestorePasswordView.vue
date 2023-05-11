@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, onUnmounted, reactive, ref } from 'vue';
 
+import type { IUserData } from '@/stores/types/user';
 import { useUserStore } from '@/stores/user';
 import { auth } from '@/supabase';
 import { showMessage } from '@/utils';
@@ -10,7 +11,7 @@ const userStore = useUserStore();
 const router = useRouter();
 
 const isLoading = ref(false);
-const userInfo = ref({});
+const userInfo = ref<IUserData>();
 const formData = reactive({
   password: '',
   verifyPassword: ''
@@ -59,10 +60,10 @@ const updatePassword = async () => {
 onBeforeMount(async () => {
   isLoading.value = true;
   const userData = await auth.getUser();
-  userInfo.value = userData;
   if (!userStore.isRecoveryPassword || userData.error) {
     await goToLogin();
   }
+  userInfo.value = (userData.data.user as IUserData) ?? {};
   isLoading.value = false;
 });
 
@@ -72,8 +73,12 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <section class="m-5 flex flex-1 flex-col justify-center gap-5" v-loading="isLoading">
-    <p>Ingresa la nueva contraseña para tu cuenta</p>
+  <section class="m-5 flex flex-1 flex-col justify-center gap-5 text-sm" v-loading="isLoading">
+    <h2 class="text-2xl font-bold">Restaurar contraseña</h2>
+    <p>
+      Ingresa la nueva contraseña para tu cuenta
+      <strong class="font-semibold">{{ userInfo?.email }}</strong>
+    </p>
     <el-form :disabled="isLoading" class="flex max-w-md flex-col gap-2">
       <el-input
         v-model="formData.password"
@@ -91,7 +96,7 @@ onUnmounted(() => {
         autocomplete="off"
       />
     </el-form>
-    <div class="text-sm">
+    <div>
       <p>La contraseña debe cumplir mínimo estas recomendaciones de seguridad:</p>
       <ul>
         <li>Longitud mínima de 12 caracteres.</li>
