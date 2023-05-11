@@ -50,9 +50,8 @@ watch(
 // TODO: create the validation rules for the form: https://element-plus.org/en-US/component/form.html#validation
 const onSave = async () => {
   isLoading.value = true;
-  const isUpdate: boolean = Boolean(form.id && form.id > 0);
   let successMessage = 'Payment created successful!';
-  if (isUpdate) {
+  if (form.id) {
     successMessage = 'Payment updated successful!';
     await paymentStore.updatePayment(form);
   } else {
