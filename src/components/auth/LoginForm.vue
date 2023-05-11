@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Button from '@/components/ui/button/index.vue';
-import Input from '@/components/ui/input/index.vue';
 import router from '@/router';
 import { auth } from '@/supabase';
 import { showMessage, validateEmail } from '@/utils';
@@ -87,19 +85,33 @@ const recoveryPassword = async () => {
 </script>
 
 <template>
-  <section class="mt-5 flex flex-col gap-5" v-loading="isLoading">
+  <section class="mt-5 flex flex-col gap-4" v-loading="isLoading">
     <p>Ingrese sus datos de acceso</p>
-    <form :disabled="isLoading" class="flex gap-2">
-      <div class="my-3">
-        <Input v-model="loginInfo.username" type="email" placeholder="email" />
-      </div>
-      <div class="my-3">
-        <Input v-model="loginInfo.password" type="password" placeholder="password" />
-      </div>
-    </form>
-    <div class="flex gap-2">
-      <Button type="primary" :disabled="incompleteFields || isLoading" name="Login" @click.stop="validateLogin" />
-      <Button type="secondary" :disabled="isLoading" name="Olvidé mi contraseña" @click.stop="recoveryPassword" />
+    <el-form :disabled="isLoading" class="w-full">
+      <el-form-item>
+        <el-input v-model="loginInfo.username" type="email" maxlength="100" placeholder="Email" />
+      </el-form-item>
+      <el-form-item>
+        <el-input
+          v-model="loginInfo.password"
+          type="password"
+          show-password
+          maxlength="100"
+          placeholder="Password"
+          @keydown.enter="validateLogin"
+        />
+      </el-form-item>
+    </el-form>
+    <div class="flex justify-end gap-2">
+      <el-button
+        type="primary"
+        :disabled="incompleteFields || isLoading"
+        :loading="isLoading"
+        @click.stop="validateLogin"
+      >
+        Login
+      </el-button>
+      <el-button link :disabled="isLoading" @click.stop="recoveryPassword">Olvidé mi contraseña</el-button>
     </div>
   </section>
 </template>
