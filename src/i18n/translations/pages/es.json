@@ -1,0 +1,9 @@
+{
+  "auth": {
+    "login": "Inicio Sesión",
+    "restorePassword": "Restaurar contraseña"
+  },
+  "dashboard": "Dashboard",
+  "404": "404 Not Found",
+  "500": "500 Internal Server Error"
+}
