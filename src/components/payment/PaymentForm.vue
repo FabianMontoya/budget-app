@@ -4,7 +4,7 @@ import { ElDrawer, type FormInstance } from 'element-plus';
 import { computed, reactive, ref, watch } from 'vue';
 
 import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
-import { useMQ } from '@/composable/useMQ';
+import { useMQ } from '@/composable/useMq';
 import { usePaymentStore } from '@/stores/payment';
 import type { IPaymentForm } from '@/stores/types/payments';
 import { showMessage } from '@/utils';
