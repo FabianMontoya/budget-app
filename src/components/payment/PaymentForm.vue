@@ -4,7 +4,7 @@ import { ElDrawer, type FormInstance } from 'element-plus';
 import { computed, reactive, ref, watch } from 'vue';
 
 import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
-import { useVueMQ } from '@/composable/useVueMq';
+import { useMQ } from '@/composable/useMQ';
 import { usePaymentStore } from '@/stores/payment';
 import type { IPaymentForm } from '@/stores/types/payments';
 import { showMessage } from '@/utils';
@@ -18,7 +18,7 @@ interface IProps {
 
 const props = defineProps<IProps>();
 const emit = defineEmits(['update:modelValue']);
-const { isPhone } = useVueMQ();
+const { isPhone } = useMQ();
 
 const form = reactive<IPaymentForm>(props.initialValues);
 const drawerRef = ref<InstanceType<typeof ElDrawer>>();
