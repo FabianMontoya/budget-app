@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { allowOnlyDecimal } from '@/utils';
 import { Money as MoneyIcon } from '@element-plus/icons-vue';
-import { computed, defineEmits, defineProps } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
   modelValue: string;
