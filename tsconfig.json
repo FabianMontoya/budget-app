@@ -1,10 +1,8 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  /* "extends": "@vue/tsconfig/tsconfig.web.json", */
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue","src/**/*.json", "node_modules/@types"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
-    "target": "ES2020",
     "composite": true,
     "moduleResolution": "node",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -13,19 +11,7 @@
       "@/*": ["./src/*"]
     },
     "types": ["element-plus/global"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "useDefineForClassFields": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitThis": true
+    "resolveJsonModule": true
   },
 
   "references": [
