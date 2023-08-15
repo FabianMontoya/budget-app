@@ -5,6 +5,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import VueApexCharts from 'vue3-apexcharts';
 import { Vue3Mq } from 'vue3-mq';
 
 import '@/fontawesome';
@@ -29,6 +30,7 @@ app.use(Vue3Mq, {
 		desktop: '1025px'
 	}
 });
+app.use(VueApexCharts);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component);

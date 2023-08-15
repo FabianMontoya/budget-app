@@ -1,5 +1,5 @@
 {
-  "extends": ["@tsconfig/node18/tsconfig.json", "@vue/tsconfig/tsconfig.json"],
+  "extends": "@tsconfig/node18/tsconfig.json",
   "include": [
     "vite.config.*",
     "vitest.config.*",
@@ -9,8 +9,8 @@
   ],
   "compilerOptions": {
     "composite": true,
-    "module": "ESNext",
     "moduleResolution": "node",
+    "module": "ESNext",
     "types": ["node"]
   }
 }
