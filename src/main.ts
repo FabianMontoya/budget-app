@@ -22,16 +22,16 @@ app.use(router);
 app.use(ElementPlus);
 app.use(i18n);
 app.use(Vue3Mq, {
-  preset: 'devices',
-  breakpoints: {
-    phone: '0px',
-    tablet: '768px',
-    desktop: '1025px'
-  }
+	preset: 'devices',
+	breakpoints: {
+		phone: '0px',
+		tablet: '768px',
+		desktop: '1025px'
+	}
 });
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component);
+	app.component(key, component);
 }
 
 app.component('font-awesome-icon', FontAwesomeIcon);
