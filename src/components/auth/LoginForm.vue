@@ -83,7 +83,7 @@ const recoveryPassword = async () => {
 </script>
 
 <template>
-	<section class="mt-5 flex flex-col gap-4" v-loading="isLoading">
+	<section v-loading="isLoading" class="mt-5 flex flex-col gap-4">
 		<p>Ingrese sus datos de acceso</p>
 		<el-form :disabled="isLoading" class="w-full">
 			<el-form-item>

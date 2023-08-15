@@ -16,7 +16,7 @@
 		"prepare": "husky install",
 		"format": "prettier --write \"./**/*.{js,ts,json,vue}\"",
 		"lint": "eslint src --ext .ts,.vue",
-		"lint-only-errors": "eslint --quiet src --ext .ts,.vue",
+		"lint-errors-only": "eslint --quiet src --ext .ts,.vue",
 		"lint-fix": "eslint --fix src --ext .ts,.vue"
 	},
 	"dependencies": {

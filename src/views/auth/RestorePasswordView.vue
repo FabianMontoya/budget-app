@@ -74,7 +74,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-	<section class="m-5 flex flex-1 flex-col justify-center gap-5 text-sm" v-loading="isLoading">
+	<section v-loading="isLoading" class="m-5 flex flex-1 flex-col justify-center gap-5 text-sm">
 		<h2 class="text-2xl font-bold">Restaurar contraseña</h2>
 		<p>
 			Ingresa la nueva contraseña para tu cuenta

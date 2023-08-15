@@ -4,7 +4,14 @@
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser"
 	},
-	"extends": ["plugin:vue/strongly-recommended", "eslint:recommended", "@vue/typescript/recommended", "prettier"],
+	"extends": [
+		"plugin:vue/vue3-essential",
+		"plugin:vue/vue3-strongly-recommended",
+		"plugin:vue/vue3-recommended",
+		"eslint:recommended",
+		"@vue/typescript/recommended",
+		"prettier"
+	],
 	"plugins": ["@typescript-eslint", "prettier"],
 	"rules": {
 		"prettier/prettier": "error",
@@ -13,6 +20,38 @@
 		// -- re write rules
 		"spaced-comment": ["error", "always", { "block": { "balanced": true }, "exceptions": ["-", "+"] }],
 		"@typescript-eslint/no-explicit-any": "warn",
-		"no-console": "error"
+		"no-console": "error",
+		"vue/no-use-v-else-with-v-for": "warn",
+		"vue/no-useless-v-bind": "warn",
+		"vue/no-v-text": "error",
+		"vue/prefer-define-options": "error",
+		"vue/require-emit-validator": "error",
+		"vue/block-lang": [
+			"error",
+			{
+				"script": {
+					"lang": "ts"
+				}
+			}
+		],
+		"vue/block-order": [
+			"error",
+			{
+				"order": [["script", "template"], "style"]
+			}
+		],
+		"vue/html-comment-content-spacing": [
+			"error",
+			"always",
+			{
+				"exceptions": []
+			}
+		],
+		"vue/require-prop-comment": [
+			"error",
+			{
+				"type": "any"
+			}
+		]
 	}
 }

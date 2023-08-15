@@ -12,12 +12,17 @@ import { showMessage } from '@/utils';
 const paymentStore = usePaymentStore();
 
 interface IProps {
+	// for show or hide the component
 	modelValue: boolean;
+	// Initial values for the payment form
 	initialValues: IPaymentForm;
 }
 
 const props = defineProps<IProps>();
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: boolean): void;
+}>();
+
 const { isPhone } = useMQ();
 
 const form = reactive<IPaymentForm>(props.initialValues);
@@ -110,7 +115,7 @@ const cancelForm = () => {
 						<el-tooltip content="Link for online payment" placement="top">
 							<el-icon class="cursor-help text-gray-400"><InfoFilled /></el-icon>
 						</el-tooltip>
-						<el-input type="url" v-model="form.url" :prefix-icon="LinkIcon" maxlength="500" />
+						<el-input v-model="form.url" type="url" :prefix-icon="LinkIcon" maxlength="500" />
 					</div>
 				</el-form-item>
 				<el-form-item label="Reference:">
@@ -131,7 +136,7 @@ const cancelForm = () => {
 				</el-form-item>
 			</el-form>
 			<div>
-				<el-button @click="cancelForm" :disabled="isLoading">Cancel</el-button>
+				<el-button :disabled="isLoading" @click="cancelForm">Cancel</el-button>
 				<el-button type="primary" :loading="isLoading" @click="onSave">Submit</el-button>
 			</div>
 		</div>

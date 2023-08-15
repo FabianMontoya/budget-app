@@ -25,14 +25,14 @@ const logOut = async () => {
 </script>
 
 <template>
-	<main class="min-h-screen bg-gray-100 bg-opacity-10" v-loading="isLoading">
+	<main v-loading="isLoading" class="min-h-screen bg-gray-100 bg-opacity-10">
 		<el-menu
+			v-if="userStore.userData"
 			:default-active="activeIndex"
 			class="mb-4"
 			mode="horizontal"
 			:ellipsis="false"
 			@select="handleSelect"
-			v-if="userStore.userData"
 		>
 			<el-menu-item index="dashboard"
 				><el-icon><Grid /></el-icon>Dashboard</el-menu-item

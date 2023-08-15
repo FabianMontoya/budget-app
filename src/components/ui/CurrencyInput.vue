@@ -4,6 +4,7 @@ import { Money as MoneyIcon } from '@element-plus/icons-vue';
 import { computed } from 'vue';
 
 const props = defineProps<{
+	// Input value
 	modelValue: string;
 }>();
 
@@ -34,8 +35,8 @@ const parserAmount = (value: string) => {
 		type="tel"
 		autocomplete="off"
 		maxlength="20"
-		@keydown="allowOnlyDecimal($event as KeyboardEvent)"
 		:suffix-icon="MoneyIcon"
+		@keydown="allowOnlyDecimal($event as KeyboardEvent)"
 	>
 		<template #prepend>$</template>
 	</el-input>
