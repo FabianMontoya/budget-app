@@ -11,42 +11,42 @@ const userStore = useUserStore();
 const isLoading = ref(false);
 const activeIndex = ref('dashboard');
 const handleSelect = (key: string) => {
-  if (key === 'dashboard') {
-    router.push('/app/dashboard');
-  }
+	if (key === 'dashboard') {
+		router.push('/app/dashboard');
+	}
 };
 
 const logOut = async () => {
-  isLoading.value = true;
-  await auth.signOut();
-  await router.push('/');
-  isLoading.value = false;
+	isLoading.value = true;
+	await auth.signOut();
+	await router.push('/');
+	isLoading.value = false;
 };
 </script>
 
 <template>
-  <main class="min-h-screen bg-gray-100 bg-opacity-10" v-loading="isLoading">
-    <el-menu
-      :default-active="activeIndex"
-      class="mb-4"
-      mode="horizontal"
-      :ellipsis="false"
-      @select="handleSelect"
-      v-if="userStore.userData"
-    >
-      <el-menu-item index="dashboard"
-        ><el-icon><Grid /></el-icon>Dashboard</el-menu-item
-      >
-      <div class="flex-grow" />
-      <el-sub-menu index="account">
-        <template #title
-          ><el-icon><User /></el-icon>Cuenta</template
-        >
-        <el-menu-item index="account-logout" @click="logOut">Cerrar sesión</el-menu-item>
-      </el-sub-menu>
-    </el-menu>
-    <div :class="[userStore.userData ? 'px-4' : '']">
-      <RouterView />
-    </div>
-  </main>
+	<main v-loading="isLoading" class="min-h-screen bg-gray-100 bg-opacity-10">
+		<el-menu
+			v-if="userStore.userData"
+			:default-active="activeIndex"
+			class="mb-4"
+			mode="horizontal"
+			:ellipsis="false"
+			@select="handleSelect"
+		>
+			<el-menu-item index="dashboard"
+				><el-icon><Grid /></el-icon>Dashboard</el-menu-item
+			>
+			<div class="flex-grow" />
+			<el-sub-menu index="account">
+				<template #title
+					><el-icon><User /></el-icon>Cuenta</template
+				>
+				<el-menu-item index="account-logout" @click="logOut">Cerrar sesión</el-menu-item>
+			</el-sub-menu>
+		</el-menu>
+		<div :class="[userStore.userData ? 'px-4' : '']">
+			<RouterView />
+		</div>
+	</main>
 </template>

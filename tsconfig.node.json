@@ -1,12 +1,16 @@
 {
-  "extends": ["@tsconfig/node18/tsconfig.json", "@vue/tsconfig/tsconfig.json"],
-  /* "extends": "@vue/tsconfig/tsconfig.node.json", */
-  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": [
+    "vite.config.*",
+    "vitest.config.*",
+    "cypress.config.*",
+    "nightwatch.conf.*",
+    "playwright.config.*"
+  ],
   "compilerOptions": {
-    "module": "ESNext",
     "composite": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
+    "module": "ESNext",
     "types": ["node"]
   }
 }
