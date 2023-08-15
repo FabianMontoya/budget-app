@@ -1,4 +1,4 @@
-//import { useAppStore } from '@/stores/app';
+// import { useAppStore } from '@/stores/app';
 import type { IUserData } from '@/stores/types/user';
 import { useUserStore } from '@/stores/user';
 import { auth } from '@/supabase';
@@ -14,6 +14,7 @@ const awaitFunction = async () => {
 };
 
 export const verifyUserState = async () =>
+	// eslint-disable-next-line no-async-promise-executor
 	new Promise(async (resolve) => {
 		// const appStore = useAppStore();
 		const userStore = useUserStore();

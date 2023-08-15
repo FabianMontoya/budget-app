@@ -84,5 +84,5 @@ onMounted(async () => {
 			<el-button type="primary" @click="dialog = true">Agregar pago</el-button>
 		</div>
 	</article>
-	<PaymentForm v-model="dialog" :initialValues="initialValues" />
+	<PaymentForm v-model="dialog" :initial-values="initialValues" />
 </template>

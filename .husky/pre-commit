@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "\n🛠️ Pre-commit validations running...\n"
+echo "\n🛠️ Running pre-commit validations...\n"
 
+echo "\n📝 Running ESlint validations...\n"
+npm run lint
+
+echo "\n🖋️ Formatting files with Prettier...\n"
 npm run format
-npm run type-check

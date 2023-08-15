@@ -1,5 +1,6 @@
 import { deletePayment, getPayments, savePayment, updatePayment } from '@/services/payment.service';
 import type { ISavePaymentPayload, IUpdatePaymentPayload } from '@/services/types/payment';
+import { log } from '@/utils/logger';
 import { defineStore } from 'pinia';
 import type { IPaymentData, IPaymentStore } from './types/payments';
 
@@ -20,7 +21,7 @@ export const usePaymentStore = defineStore('payment', {
 				this.setIsLoading(true);
 				await savePayment(payload);
 			} catch (error) {
-				console.log('error: ', error);
+				log.error('error: ', error);
 			} finally {
 				this.setIsLoading(false);
 			}
@@ -30,7 +31,7 @@ export const usePaymentStore = defineStore('payment', {
 				this.setIsLoading(true);
 				await deletePayment(id);
 			} catch (error) {
-				console.log('error: ', error);
+				log.error('error: ', error);
 			} finally {
 				this.setIsLoading(false);
 			}
@@ -40,7 +41,7 @@ export const usePaymentStore = defineStore('payment', {
 				this.setIsLoading(true);
 				await updatePayment(payload);
 			} catch (error) {
-				console.log('error: ', error);
+				log.error('error: ', error);
 			} finally {
 				this.setIsLoading(false);
 			}
@@ -51,7 +52,7 @@ export const usePaymentStore = defineStore('payment', {
 				const response = await getPayments();
 				this.setPayments(response);
 			} catch (error) {
-				console.log('error: ', error);
+				log.error('error: ', error);
 			} finally {
 				this.setIsLoading(false);
 			}

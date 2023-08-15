@@ -1,17 +1,23 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-BRANCH=`git rev-parse --abbrev-ref HEAD`
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
 PROTECTED_BRANCHES="^(master|main|develop|qa|stage)"
 
 echo "\n🚀 Pre-push validations running...\n"
 
-if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
-then
-  echo "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use PR.\n"
-  exit 1
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
+	echo "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use PR.\n"
+	exit 1
 fi
 
+echo "\n📝 Running ESlint validations...\n"
+npm run lint
+
+echo "\n🛠️ Running TypeScript validations...\n"
 npm run type-check
-#npm run test
+
+echo "\n🧩 Running unit test...\n"
+#npm run test:unit
+
 echo "Pushing to remote $BRANCH...\n"

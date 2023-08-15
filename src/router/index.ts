@@ -4,7 +4,8 @@ import { publicRoutes } from './routes';
 const initRouter = () =>
 	createRouter({
 		history: createWebHistory(import.meta.env.BASE_URL),
-		scrollBehavior(_to, _from, _savedPosition) {
+		// _to, _from, _savedPosition
+		scrollBehavior() {
 			return { top: 0 };
 		},
 		routes: publicRoutes

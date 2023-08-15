@@ -2,6 +2,7 @@
 import router from '@/router';
 import { auth } from '@/supabase';
 import { showMessage, validateEmail } from '@/utils';
+import { log } from '@/utils/logger';
 import { computed, reactive, ref } from 'vue';
 
 const loginInfo = reactive({
@@ -34,11 +35,11 @@ const validateLogin = async () => {
 				showMessage('Usuario deshabilitado.', 'warning');
 				break;
 			default:
-				console.error('Auth error: ', { error });
+				log.error('Auth error: ', { error });
 				showMessage('Ocurrió un error y no se pudo hacer login.', 'error');
 		}
 	} catch (error) {
-		console.error(error);
+		log.error(error);
 		showMessage('Ocurrió un error y no se pudo hacer login.', 'error');
 	} finally {
 		loginInfo.password = '';

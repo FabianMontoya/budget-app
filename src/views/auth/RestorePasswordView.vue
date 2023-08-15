@@ -5,6 +5,7 @@ import type { IUserData } from '@/stores/types/user';
 import { useUserStore } from '@/stores/user';
 import { auth } from '@/supabase';
 import { showMessage } from '@/utils';
+import { log } from '@/utils/logger';
 import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
@@ -19,7 +20,7 @@ const formData = reactive({
 
 const validateSessionAndClose = async () => {
 	const { data } = await auth.getSession();
-	console.log({ data });
+	log.trace({ data });
 	if (data.session !== null) {
 		await auth.signOut();
 	}
@@ -32,7 +33,7 @@ const goToLogin = async () => {
 	isLoading.value = false;
 };
 
-//TODO: Add validations for the password
+// TODO: Add validations for the password
 const updatePassword = async () => {
 	if (formData.password !== formData.verifyPassword) {
 		showMessage('Las contraseñas no coinciden, favor validar.', 'error');

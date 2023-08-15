@@ -1,6 +1,7 @@
 import { auth } from '@/supabase';
 import { verifyUserState } from '@/supabase/utils';
 import { getPageTitle } from '@/utils';
+import { log } from '@/utils/logger';
 import nProgress from 'nprogress';
 import router from './index';
 
@@ -23,7 +24,7 @@ router.beforeEach(async (to, _from, next) => {
 	}
 
 	if (to.meta.requiresAuth && !user && to.name !== 'login') {
-		console.warn('User tried to enter into a path that requires authentication.');
+		log.warn('User tried to enter into a path that requires authentication.');
 		next({ name: 'login' });
 		return;
 	}
@@ -31,7 +32,7 @@ router.beforeEach(async (to, _from, next) => {
 	return next();
 });
 
-router.afterEach(async (to, _from) => {
+router.afterEach(async (to) => {
 	document.title = getPageTitle(to.meta.pageTitle);
 	nProgress.done();
 });

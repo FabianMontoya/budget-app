@@ -9,7 +9,8 @@ const userStore = useUserStore();
 
 const getHashParams = () => {
 	const params = window.location.hash.substring(1).split('&');
-	var result: any = {};
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const result: any = {};
 
 	params.forEach((item) => {
 		const param = item.split('=');
@@ -45,4 +46,6 @@ onBeforeMount(() => {
 	verifyStatus();
 });
 </script>
-<template></template>
+<template>
+	<main></main>
+</template>

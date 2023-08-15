@@ -3,7 +3,7 @@ import { Check as CheckIcon, Close as CloseIcon, Link as LinkIcon } from '@eleme
 import { ElDrawer, type FormInstance } from 'element-plus';
 import { computed, reactive, ref, watch } from 'vue';
 
-import CurrencyInput from '@/components/ui/CurrencyInput/index.vue';
+import CurrencyInput from '@/components/ui/CurrencyInput.vue';
 import { useMQ } from '@/composable/useMq';
 import { usePaymentStore } from '@/stores/payment';
 import type { IPaymentForm } from '@/stores/types/payments';

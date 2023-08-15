@@ -9,7 +9,7 @@ export const getEnv = (): ImportMetaEnv => import.meta && import.meta.env;
 
 export const validateEmail = (email: string): boolean => {
 	const match = email.match(
-		/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 	);
 
 	return match ? true : false;
@@ -68,8 +68,10 @@ export const allowOnlyDecimal = (evt: KeyboardEvent) => {
 	}
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isString = (str: any) => typeof str === 'string' || str instanceof String;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isArray = (arg: any) => {
 	if (typeof Array.isArray === 'undefined') {
 		return Object.prototype.toString.call(arg) === '[object Array]';
@@ -111,11 +113,11 @@ export function getBrowserLocales(options = {}) {
 }
 
 export const numberToCurrency = (value: number) => {
-	/*const formatter = new Intl.NumberFormat('en-US', {
+	/* const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   });
-  return formatter.format(value);*/
+  return formatter.format(value); */
 
 	if (!value || isNaN(value) || value === 0) {
 		return '$ -';
