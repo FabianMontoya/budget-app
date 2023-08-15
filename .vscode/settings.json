@@ -5,10 +5,11 @@
   "css.lint.unknownAtRules": "ignore",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "files.associations": { "*.scss": "postcss" },
+  "typescript.tsdk": "node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   }
