@@ -1,27 +1,27 @@
 import type { Dayjs } from 'dayjs';
 
 export interface IPaymentStore {
-  isLoading: boolean;
-  payments: IPaymentData[];
+	isLoading: boolean;
+	payments: IPaymentData[];
 }
 
 export interface IPaymentForm {
-  id: number;
-  description: string;
-  amount: number;
-  isFixed: boolean;
-  url: string;
-  reference: string;
+	id: number;
+	description: string;
+	amount: number;
+	isFixed: boolean;
+	url: string;
+	reference: string;
 }
 
 export interface IPaymentData {
-  id: number;
-  description: string;
-  amount: number;
-  isFixed: boolean;
-  url: string;
-  reference: string;
-  created_at: Dayjs;
-  user_created: string;
-  updated_at: Dayjs;
+	id: number;
+	description: string;
+	amount: number;
+	isFixed: boolean;
+	url: string;
+	reference: string;
+	created_at: Dayjs;
+	user_created: string;
+	updated_at: Dayjs;
 }

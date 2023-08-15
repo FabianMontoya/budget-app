@@ -8,41 +8,44 @@ const router = useRouter();
 const userStore = useUserStore();
 
 const getHashParams = () => {
-  const params = window.location.hash.substring(1).split('&');
-  var result: any = {};
+	const params = window.location.hash.substring(1).split('&');
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const result: any = {};
 
-  params.forEach((item) => {
-    const param = item.split('=');
-    result[param[0]] = decodeURIComponent(param[1]);
-  });
+	params.forEach((item) => {
+		const param = item.split('=');
+		result[param[0]] = decodeURIComponent(param[1]);
+	});
 
-  return result;
+	return result;
 };
 
 const verifyStatus = () => {
-  const params = getHashParams();
+	const params = getHashParams();
 
-  if (params.type === 'recovery') {
-    userStore.isRecoveryPassword = true;
-    router.push({ name: 'restorePassword' });
-    return;
-  }
+	if (params.type === 'recovery') {
+		userStore.isRecoveryPassword = true;
+		router.push({ name: 'restorePassword' });
+		return;
+	}
 
-  if (params.type === 'magiclink') {
-    router.push({ name: 'dashboard' });
-    return;
-  }
+	if (params.type === 'magiclink') {
+		router.push({ name: 'dashboard' });
+		return;
+	}
 
-  if (params.error_code === '401') {
-    alert('El link ingresado no es valido o ha expirado, por favor ejecute la acción requerida nuevamente.');
-  }
+	if (params.error_code === '401') {
+		alert('El link ingresado no es valido o ha expirado, por favor ejecute la acción requerida nuevamente.');
+	}
 
-  router.push('/');
-  return;
+	router.push('/');
+	return;
 };
 
 onBeforeMount(() => {
-  verifyStatus();
+	verifyStatus();
 });
 </script>
-<template></template>
+<template>
+	<main></main>
+</template>
